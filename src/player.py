@@ -32,8 +32,10 @@ class Player:
             value = 10
         else:
             value = int(face_value)
+
         unoptimized = self.score + value
         optimized = self.optimize_score()
+
         if (optimized == 21) or (unoptimized > 21 and optimized <= 21):
             self.score = optimized
         else:
@@ -50,14 +52,11 @@ class Player:
             else:
                 card_wise_score.append(int(card.value))
         
-        optimized = sum(card_wise_score)
-        
         for i in range(len(card_wise_score)):
             if card_wise_score[i] == 1 and sum(card_wise_score) + 10 <= 21:
                 card_wise_score[i] = 11
         
         optimized = sum(card_wise_score)
-        
         return optimized
     
     def evaluate_status(self):
@@ -67,7 +66,6 @@ class Player:
             self.is_finished = True
         elif self.score == 21:
             self.is_finished = True
-
     
     def make_decision(self, dealer):
         decision = None
