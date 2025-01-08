@@ -2,6 +2,7 @@ from .deck import Deck
 class Dealer:
     def __init__(self):
         self.deck = Deck()
+        self.shuffle_deck()
     
     def deal(self):
         card = self.deck.cards.pop()
@@ -9,8 +10,6 @@ class Dealer:
     
     def shuffle_deck(self):
         self.deck.shuffle()
-        
-    def reset_deck(self):
-        self.deck.initialise_standard_deck()
+
 
     
