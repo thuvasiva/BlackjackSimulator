@@ -52,7 +52,7 @@ class Game:
                 if not player.is_finished:
                     print("Player " + player.name + " your cards are: " + str(player.hand.cards) + "\n")
                     print("Your current score is: " + str(player.score) + "\n")
-                    player.make_decision(self.dealer)
+                    player.make_hit_or_stand_decision(self.dealer)
                     print("\nYour cards following your decision are: " + str(player.hand.cards) + "\n")
                     print("Your new score: " + str(player.score) + "\n")
                     if player.is_bust:
