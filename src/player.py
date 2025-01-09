@@ -22,12 +22,7 @@ class Player:
     def update_score(self, card):
         face_value = card.value
         if face_value == "A":
-            value = None
-            while(value != 1 and value != 11):
-                try:
-                    value = int(input(self.name + ", you've been dealt an Ace! Would you like it to be worth 1 or 11? "))
-                except ValueError:
-                    print("Invalid input, please enter either 1 or 11.")
+            value = self.make_ace_value_decision()
         elif face_value == "K" or face_value == "Q" or face_value == "J":
             value = 10
         else:
@@ -67,7 +62,7 @@ class Player:
         elif self.score == 21:
             self.is_finished = True
     
-    def make_decision(self, dealer):
+    def make_hit_or_stand_decision(self, dealer):
         decision = None
         while(decision != "hit" and decision != "stand"):
             decision = input("Do you want to 'hit' or 'stand'? ")
@@ -75,6 +70,16 @@ class Player:
                 self.hit(dealer)
             elif decision == "stand":
                 self.stand()
+
+    def make_ace_value_decision(self):
+        value = None
+        while(value != 1 and value != 11):
+            try:
+                value = int(input(self.name + ", you've been dealt an Ace! Would you like it to be worth 1 or 11? "))
+            except ValueError:
+                print("Invalid input, please enter either 1 or 11.")
+        return value
+        
          
 
 

@@ -13,11 +13,11 @@ class Game:
         print("|______Player Setup______|\n")
         if self.no_of_players < 1:
             print("You need at least one player to play the game.")
-            print("Setting up a single player game.")
+            print("Setting up a single player game.\n")
             self.no_of_players = 1
         elif self.no_of_players > 4:
             print("You can have a maximum of 4 players in the game.")
-            print("Setting up a 4 player game.")
+            print("Setting up a 4 player game.\n")
             self.no_of_players = 4
         
         for i in range(self.no_of_players):
@@ -75,7 +75,7 @@ class Game:
         try:
             maximum_score = remaining_players[0].score
         except IndexError:
-            print("Unfortunately all player(s) went bust!")
+            print("Unfortunately all player(s) went bust! :(")
         
         winners = []
         for player in remaining_players:
