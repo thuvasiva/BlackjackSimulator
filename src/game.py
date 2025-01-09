@@ -1,5 +1,7 @@
 from .dealer import Dealer
 from .player import Player
+from time import sleep
+
 class Game:
     def __init__(self, no_of_players):
         self.dealer = Dealer()
@@ -8,6 +10,7 @@ class Game:
         self.no_of_finished_players = 0
 
     def set_up_players(self):
+        print("|______Player Setup______|\n")
         if self.no_of_players < 1:
             print("You need at least one player to play the game.")
             print("Setting up a single player game.")
@@ -23,20 +26,27 @@ class Game:
             new_player = Player(user_input)
             self.players.append(new_player)
         print("Player set up complete!  \n")
-        print("-------------------------")
+        print("---------------------------------------")
         
     def deal_opening_hand(self):
+        print("|______Dealing Opening Hand______|\n")
         for player in self.players:
             print("Dealing opening hand for : " + player.name + "\n")
             player.hit(self.dealer)
+            print(player.name + "'s hand " + str(player.hand.cards) + "\n")
+            sleep(1)
             player.hit(self.dealer)
             print(player.name + "'s hand " + str(player.hand.cards) + "\n")
             if player.is_finished:
-                print("Congratulations your opening hand is a winning hand!")
+                print("Congratulations " + player.name + " your opening hand is a winning hand!")
+                print("Your score is " + str(player.score))
+                print("You will be declared as a winner at the end of the game.\n")
                 self.no_of_finished_players += 1
-        print("-------------------------")
+            print("\n")
+        print("---------------------------------------")
         
     def play_to_completion(self):
+        print("|______Game Play______|\n")
         while self.no_of_finished_players < self.no_of_players:
             for player in self.players:
                 if not player.is_finished:
@@ -51,10 +61,11 @@ class Game:
                     elif player.is_finished:
                         print(player.name + " has finished. \n")
                         self.no_of_finished_players += 1
-                    print("-------------------------")
+                    print("-------------------")
         self.determine_winner()
 
     def determine_winner(self):
+        print("|______Game Over______|\n")
         remaining_players = []
         for player in self.players:
             if not player.is_bust:
@@ -64,7 +75,7 @@ class Game:
         try:
             maximum_score = remaining_players[0].score
         except IndexError:
-            print("Everyone went bust!")
+            print("Unfortunately all player(s) went bust!")
         
         winners = []
         for player in remaining_players:
@@ -72,7 +83,7 @@ class Game:
                 winners.append(player)
 
         for player in winners:
-            print(player.name + " - Congratulations! You won!")
+            print(player.name + " - Congratulations! You won! Your score was: " + str(player.score))
                 
 
 

@@ -25,7 +25,7 @@ class Player:
             value = None
             while(value != 1 and value != 11):
                 try:
-                    value = int(input("You have received an Ace, how much do you want it to be worth 1 or 11? "))
+                    value = int(input(self.name + ", you've been dealt an Ace! Would you like it to be worth 1 or 11? "))
                 except ValueError:
                     print("Invalid input, please enter either 1 or 11.")
         elif face_value == "K" or face_value == "Q" or face_value == "J":
