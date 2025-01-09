@@ -1,22 +1,24 @@
 from .dealer import Dealer
 from .player import Player
+from .aiplayer import AIPlayer
 from time import sleep
 
 class Game:
-    def __init__(self, no_of_players):
+    def __init__(self, no_of_players, ai_player):
         self.dealer = Dealer()
         self.no_of_players = no_of_players
         self.players = []
         self.no_of_finished_players = 0
+        self.ai_player = ai_player
 
     def set_up_players(self):
         print("|______Player Setup______|\n")
         if self.no_of_players < 1:
-            print("You need at least one player to play the game.")
-            print("Setting up a single player game.\n")
+            print("You need at least 1 non-AI player to play the game.")
+            print("Setting up a single-player game.\n")
             self.no_of_players = 1
         elif self.no_of_players > 4:
-            print("You can have a maximum of 4 players in the game.")
+            print("You can have a maximum of 4 non-AI players in the game.")
             print("Setting up a 4 player game.\n")
             self.no_of_players = 4
         
@@ -25,6 +27,10 @@ class Game:
             print("Hello: " + user_input + "\n")
             new_player = Player(user_input)
             self.players.append(new_player)
+        
+        if self.ai_player:
+            self.players.append(AIPlayer("AI-Player"))
+
         print("Player set up complete!  \n")
         print("---------------------------------------")
         
@@ -54,7 +60,7 @@ class Game:
                     print("Your current score is: " + str(player.score) + "\n")
                     player.make_hit_or_stand_decision(self.dealer)
                     print("\nYour cards following your decision are: " + str(player.hand.cards) + "\n")
-                    print("Your new score: " + str(player.score) + "\n")
+                    print("Your new score is: " + str(player.score) + "\n")
                     if player.is_bust:
                         print(player.name + " went bust. \n")
                         self.no_of_finished_players += 1
