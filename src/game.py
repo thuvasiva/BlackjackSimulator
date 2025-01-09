@@ -30,6 +30,7 @@ class Game:
         
         if self.ai_player:
             self.players.append(AIPlayer("AI-Player"))
+            self.no_of_players += 1
 
         print("Player set up complete!  \n")
         print("---------------------------------------")
