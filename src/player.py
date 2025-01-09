@@ -7,18 +7,21 @@ class Player:
         self.is_bust = False
         self.is_finished = False
 
+    #allows the player to hit 
     def hit(self, dealer):
         card = dealer.deal()
         self.hand.add(card)
         self.update_score(card)
         self.evaluate_status()
-                
+
+    #allows the player to stand             
     def stand(self):
         optimized = self.optimize_score()
         if optimized > self.score and optimized <= 21:
             self.score = optimized
         self.is_finished = True
 
+    #updates the player's score based on the card dealt and result of the optimization
     def update_score(self, card):
         face_value = card.value
         if face_value == "A":
@@ -31,11 +34,13 @@ class Player:
         unoptimized = self.score + value
         optimized = self.optimize_score()
 
+        #uses the optimized score if it is 21 or if the unoptimized score is bust
         if (optimized == 21) or (unoptimized > 21 and optimized <= 21):
             self.score = optimized
         else:
             self.score = unoptimized
-        
+
+    #optimizes the score by converting Aces to 11 if possible 
     def optimize_score(self):
         card_wise_score = []
         
@@ -54,6 +59,7 @@ class Player:
         optimized = sum(card_wise_score)
         return optimized
     
+    #evaluates the bust and finished statuses of the player based on their score
     def evaluate_status(self):
         if self.score > 21:
             self.hand.is_valid = False
@@ -62,6 +68,7 @@ class Player:
         elif self.score == 21:
             self.is_finished = True
     
+    #allows the player to make a hit or stand decision
     def make_hit_or_stand_decision(self, dealer):
         decision = None
         while(decision != "hit" and decision != "stand"):
@@ -71,6 +78,7 @@ class Player:
             elif decision == "stand":
                 self.stand()
 
+    #allows the player to make a decision on the value of an Ace
     def make_ace_value_decision(self):
         value = None
         while(value != 1 and value != 11):

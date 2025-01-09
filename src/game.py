@@ -11,6 +11,7 @@ class Game:
         self.no_of_finished_players = 0
         self.ai_player = ai_player
 
+    #creates the players for the game
     def set_up_players(self):
         print("|______Player Setup______|\n")
         if self.no_of_players < 1:
@@ -34,14 +35,15 @@ class Game:
 
         print("Player set up complete!  \n")
         print("---------------------------------------")
-        
+    
+    #deals an opening hand to each player and displays it
     def deal_opening_hand(self):
         print("|______Dealing Opening Hand______|\n")
         for player in self.players:
             print("Dealing opening hand for : " + player.name + "\n")
             player.hit(self.dealer)
             print(player.name + "'s hand " + str(player.hand.cards) + "\n")
-            sleep(1)
+            sleep(1) #sleeps for delay effect
             player.hit(self.dealer)
             print(player.name + "'s hand " + str(player.hand.cards) + "\n")
             if player.is_finished:
@@ -51,7 +53,8 @@ class Game:
                 self.no_of_finished_players += 1
             print("\n")
         print("---------------------------------------")
-        
+    
+    #plays the game to completion
     def play_to_completion(self):
         print("|______Game Play______|\n")
         while self.no_of_finished_players < self.no_of_players:
@@ -71,6 +74,7 @@ class Game:
                     print("-------------------")
         self.determine_winner()
 
+    #determines the winner(s) of the game
     def determine_winner(self):
         print("|______Game Over______|\n")
         remaining_players = []
@@ -89,6 +93,7 @@ class Game:
             if player.score == maximum_score:
                 winners.append(player)
 
+        #designates every player which hit the maximum valid score as a winner
         for player in winners:
             print(player.name + " - Congratulations! You won! Your score was: " + str(player.score))
                 
