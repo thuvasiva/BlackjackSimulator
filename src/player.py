@@ -62,7 +62,7 @@ class Player:
     #evaluates the bust and finished statuses of the player based on their score
     def evaluate_status(self):
         if self.score > 21:
-            self.hand.is_valid = False
+            self.hand.valid = False
             self.is_bust = True
             self.is_finished = True
         elif self.score == 21:

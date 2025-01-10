@@ -7,7 +7,7 @@ import sys
 
 class GameTestCase(unittest.TestCase):
     def setUp(self):
-        self.game = Game(1) 
+        self.game = Game(1, False) 
         sys.stdout = io.StringIO() #redirects stdout to a buffer instead of the console
             
     def tearDown(self): 

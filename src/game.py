@@ -4,12 +4,12 @@ from .aiplayer import AIPlayer
 from time import sleep
 
 class Game:
-    def __init__(self, no_of_players, ai_player):
+    def __init__(self, no_of_players, activate_ai_player):
         self.dealer = Dealer()
         self.no_of_players = no_of_players
         self.players = []
         self.no_of_finished_players = 0
-        self.ai_player = ai_player
+        self.activate_ai_player = activate_ai_player
 
     #creates the players for the game
     def set_up_players(self):
@@ -29,7 +29,7 @@ class Game:
             new_player = Player(user_input)
             self.players.append(new_player)
         
-        if self.ai_player:
+        if self.activate_ai_player:
             self.players.append(AIPlayer("AI-Player"))
             self.no_of_players += 1
 
