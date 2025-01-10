@@ -7,9 +7,10 @@ class Game:
     def __init__(self, no_of_players, activate_bot):
         self.dealer = Dealer()
         self.no_of_players = no_of_players
+        self.activate_bot = activate_bot
         self.players = []
         self.no_of_finished_players = 0
-        self.activate_bot = activate_bot
+        self.winners = []
 
     #creates the players for the game
     def set_up_players(self):
@@ -72,7 +73,6 @@ class Game:
                         print(player.name + " has finished. \n")
                         self.no_of_finished_players += 1
                     print("-------------------")
-        self.determine_winner()
 
     #determines the winner(s) of the game
     def determine_winner(self):
@@ -88,13 +88,12 @@ class Game:
         except IndexError:
             print("Unfortunately all player(s) went bust! :(")
         
-        winners = []
         for player in remaining_players:
             if player.score == maximum_score:
-                winners.append(player)
+                self.winners.append(player)
 
         #designates every player which hit the maximum valid score as a winner
-        for player in winners:
+        for player in self.winners:
             print(player.name + " - Congratulations! You won! Your score was: " + str(player.score))
                 
 

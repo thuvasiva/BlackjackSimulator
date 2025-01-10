@@ -21,6 +21,7 @@ def play():
     game.set_up_players()
     game.deal_opening_hand()
     game.play_to_completion()
+    game.determine_winner()
     
 if __name__ == '__main__':
     play()

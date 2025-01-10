@@ -149,3 +149,6 @@ class PlayerTestCase(unittest.TestCase):
         self.player.update_score(self.card3)
         
         self.assertEqual(self.player.score, 21) #asserts the score is 21
+    
+if __name__ == '__main__':
+    unittest.main()
