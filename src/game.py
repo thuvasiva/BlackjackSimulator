@@ -1,25 +1,25 @@
 from .dealer import Dealer
 from .player import Player
-from .aiplayer import AIPlayer
+from .bot import Bot
 from time import sleep
 
 class Game:
-    def __init__(self, no_of_players, activate_ai_player):
+    def __init__(self, no_of_players, activate_bot):
         self.dealer = Dealer()
         self.no_of_players = no_of_players
         self.players = []
         self.no_of_finished_players = 0
-        self.activate_ai_player = activate_ai_player
+        self.activate_bot = activate_bot
 
     #creates the players for the game
     def set_up_players(self):
         print("|______Player Setup______|\n")
         if self.no_of_players < 1:
-            print("You need at least 1 non-AI player to play the game.")
+            print("You need at least 1 human player to play the game.")
             print("Setting up a single-player game.\n")
             self.no_of_players = 1
         elif self.no_of_players > 4:
-            print("You can have a maximum of 4 non-AI players in the game.")
+            print("You can have a maximum of 4 human players in the game.")
             print("Setting up a 4 player game.\n")
             self.no_of_players = 4
         
@@ -29,8 +29,8 @@ class Game:
             new_player = Player(user_input)
             self.players.append(new_player)
         
-        if self.activate_ai_player:
-            self.players.append(AIPlayer("AI-Player"))
+        if self.activate_bot:
+            self.players.append(Bot("Bot"))
             self.no_of_players += 1
 
         print("Player set up complete!  \n")

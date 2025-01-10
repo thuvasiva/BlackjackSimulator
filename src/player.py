@@ -21,7 +21,7 @@ class Player:
             self.score = optimized
         self.is_finished = True
 
-    #updates the player's score based on the card dealt and result of the optimization
+    #updates the player's score based on the card dealt and result of the score optimization algorithm
     def update_score(self, card):
         face_value = card.value
         if face_value == "A":
@@ -34,13 +34,13 @@ class Player:
         unoptimized = self.score + value
         optimized = self.optimize_score()
 
-        #uses the optimized score if it is 21 or if the unoptimized score is bust
+        #uses the optimized score if it is exactly 21 or if the unoptimized score would cause the player to bust
         if (optimized == 21) or (unoptimized > 21 and optimized <= 21):
             self.score = optimized
         else:
             self.score = unoptimized
 
-    #optimizes the score by converting Aces to 11 if possible 
+    #optimizes (aims to increase) the score by converting Aces to 11 if possible 
     def optimize_score(self):
         card_wise_score = []
         
