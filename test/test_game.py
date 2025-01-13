@@ -38,6 +38,7 @@ class GameTestCase(unittest.TestCase):
         player2.score = 19
         self.game.players.append(player1)
         self.game.players.append(player2)
+        self.game.no_of_players += 1
     
         self.game.determine_winner()
 
@@ -56,6 +57,7 @@ class GameTestCase(unittest.TestCase):
         self.game.players.append(player1)
         self.game.players.append(player2)
         self.game.players.append(player3)
+        self.game.no_of_players += 2
 
         self.game.determine_winner()
 
@@ -74,6 +76,7 @@ class GameTestCase(unittest.TestCase):
         player2.is_bust = True
         self.game.players.append(player1)
         self.game.players.append(player2)
+        self.game.no_of_players += 1
 
         self.game.determine_winner()
 
