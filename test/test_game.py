@@ -14,7 +14,7 @@ class GameTestCase(unittest.TestCase):
         sys.stdout = sys.__stdout__ #resets stdout to the console
     
     #tests the deal_opening_hand method (scenario 1) 
-    @patch('builtins.input', side_effect=["1"]) #passes a mock input of 1 if an Ace is dealt
+    @patch('builtins.input', side_effect=["1", "1"]) #passes mock inputs of 1 if Aces are dealt
     def test_deal_opening_hand(self, mock_input):
         self.game.players.append(Player("Test Player"))
 
